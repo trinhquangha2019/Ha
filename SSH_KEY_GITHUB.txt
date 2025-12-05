@@ -1,0 +1,32 @@
+SSH PUBLIC KEY - THÊM VÀO GITHUB
+================================
+
+Public Key của bạn:
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJcxRV88+iDxQFQCMpBWH9bLmmtjfVlG6SWtbPPrktV3 trinhquangha2019@gmail.com
+
+HƯỚNG DẪN THÊM SSH KEY VÀO GITHUB:
+===================================
+
+1. Copy toàn bộ dòng public key ở trên (bắt đầu từ ssh-ed25519...)
+
+2. Truy cập: https://github.com/settings/keys
+
+3. Click nút "New SSH key" (màu xanh)
+
+4. Điền thông tin:
+   - Title: "My Laptop" (hoặc tên bạn muốn)
+   - Key type: Authentication Key
+   - Key: Paste public key đã copy ở bước 1
+
+5. Click "Add SSH key"
+
+6. Nhập mật khẩu GitHub để xác nhận
+
+SAU KHI THÊM XONG:
+=================
+Chạy lệnh sau để kiểm tra kết nối:
+ssh -T git@github.com
+
+Nếu thấy: "Hi username! You've successfully authenticated..." 
+→ Thành công!
+

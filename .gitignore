@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+*.cache
+
+# Documents (giữ lại các file markdown và txt quan trọng)
+*.docx
+*.doc
+*.pdf
+*.pptx
+*.xlsx
+
+# Extracted files
+*_extracted.txt
+
+# SSH keys (không commit private key)
+*.pem
+id_rsa
+id_ed25519
+!id_ed25519.pub
+
+# HTML exports (tạm thời)
+*.html
+
+# Notebook
+.ipynb_checkpoints/
+
