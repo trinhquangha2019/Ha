@@ -35,7 +35,7 @@ try {
     $initLog = @(
         "[$timestamp] Auto Sync GitHub - Bat dau chay nen",
         "[$timestamp] Thu muc: $scriptPath",
-        "[$timestamp] Kiem tra moi 5 phut",
+        "[$timestamp] Kiem tra moi 1 phut (tu dong xu ly xoa file va conflict)",
         ""
     )
     $initLog | Out-File -FilePath $logFile -Encoding UTF8 -ErrorAction Stop
@@ -73,25 +73,69 @@ while ($true) {
             continue
         }
         
-        # Kiem tra co thay doi khong
+        # Kiem tra branch status voi remote
+        git fetch origin 2>&1 | Out-Null
+        
+        # Kiem tra co thay doi local khong
         $status = git status --porcelain 2>&1
         
-        if (-not [string]::IsNullOrWhiteSpace($status)) {
-            Write-Log "Phat hien thay doi! Dang sync..."
-            
-            # Add tat ca file
-            git add . 2>&1 | Out-Null
-            
-            # Commit voi timestamp
-            $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-            $commitMessage = "Auto sync: $timestamp"
-            
-            $commitResult = git commit -m $commitMessage 2>&1
-            
-            if ($LASTEXITCODE -eq 0) {
-                Write-Log "Commit thanh cong!"
+        # Kiem tra co conflict voi remote khong
+        $branchStatus = git status -sb 2>&1
+        $hasConflict = $branchStatus -match "behind|diverged|ahead"
+        
+        if (-not [string]::IsNullOrWhiteSpace($status) -or $hasConflict) {
+            if (-not [string]::IsNullOrWhiteSpace($status)) {
+                Write-Log "Phat hien thay doi local! Dang sync..."
                 
-                # Push len GitHub
+                # Add tat ca file (bao gom ca file bi xoa) - QUAN TRONG!
+                git add -A 2>&1 | Out-Null
+                
+                # Commit voi timestamp
+                $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+                $commitMessage = "Auto sync: $timestamp"
+                
+                $commitResult = git commit -m $commitMessage 2>&1
+                
+                if ($LASTEXITCODE -eq 0) {
+                    Write-Log "Commit thanh cong!"
+                } else {
+                    Write-Log "Khong co gi de commit hoac loi: $commitResult"
+                }
+            }
+            
+            # Xu ly conflict voi remote
+            if ($hasConflict) {
+                Write-Log "Phat hien conflict voi remote! Dang xu ly..."
+                
+                # Thu pull truoc
+                $pullResult = git pull --rebase origin main 2>&1
+                
+                if ($LASTEXITCODE -ne 0) {
+                    # Neu pull that bai, force push (tu dong ghi de remote)
+                    Write-Log "Pull that bai, dang force push de dong bo..."
+                    $pushResult = git push --force origin main 2>&1
+                    
+                    if ($LASTEXITCODE -eq 0) {
+                        $syncCount++
+                        $lastSyncTime = Get-Date
+                        Write-Log "Force push thanh cong! (Lan: $syncCount)"
+                    } else {
+                        Write-Log "LOI khi force push: $pushResult"
+                    }
+                } else {
+                    # Pull thanh cong, push binh thuong
+                    $pushResult = git push origin main 2>&1
+                    
+                    if ($LASTEXITCODE -eq 0) {
+                        $syncCount++
+                        $lastSyncTime = Get-Date
+                        Write-Log "Push thanh cong sau pull! (Lan: $syncCount)"
+                    } else {
+                        Write-Log "LOI khi push: $pushResult"
+                    }
+                }
+            } else {
+                # Khong co conflict, push binh thuong
                 $pushResult = git push origin main 2>&1
                 
                 if ($LASTEXITCODE -eq 0) {
@@ -101,8 +145,6 @@ while ($true) {
                 } else {
                     Write-Log "LOI khi push: $pushResult"
                 }
-            } else {
-                Write-Log "Khong co gi de commit hoac loi: $commitResult"
             }
         } else {
             # Chi log moi 30 phut de khong spam log
@@ -117,6 +159,6 @@ while ($true) {
         Write-Log "LOI: $($_.Exception.Message)"
     }
     
-    # Doi 5 phut (300 giay)
-    Start-Sleep -Seconds 300
+    # Doi 1 phut (60 giay) - Gan thoi gian thuc hon
+    Start-Sleep -Seconds 60
 }
