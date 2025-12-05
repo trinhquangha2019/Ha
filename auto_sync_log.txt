@@ -93,3 +93,6 @@
 [2025-12-05 17:41:13] Commit thanh cong!
 [2025-12-05 17:41:16] LOI khi push: To github.com:trinhquangha2019/Ha.git  ! [rejected]        main -> main (non-fast-forward) error: failed to push some refs to 'github.com:trinhquangha2019/Ha.git' hint: Updates were rejected because the tip of your current branch is behind hint: its remote counterpart. If you want to integrate the remote changes, hint: use 'git pull' before pushing again. hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 [2025-12-05 17:42:00] Phat hien thay doi! Dang sync...
+[2025-12-05 17:42:00] Commit thanh cong!
+[2025-12-05 17:42:03] LOI khi push: To github.com:trinhquangha2019/Ha.git  ! [rejected]        main -> main (non-fast-forward) error: failed to push some refs to 'github.com:trinhquangha2019/Ha.git' hint: Updates were rejected because the tip of your current branch is behind hint: its remote counterpart. If you want to integrate the remote changes, hint: use 'git pull' before pushing again. hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+[2025-12-05 17:46:16] Phat hien thay doi! Dang sync...
