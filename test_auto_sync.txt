@@ -1,0 +1,5 @@
+File test để kiểm tra auto sync GitHub
+Thời gian tạo: 2025-12-05 12:42:00
+Nếu auto sync hoạt động, file này sẽ được commit và push lên GitHub trong vòng 5 phút.
+
+

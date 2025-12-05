@@ -46,3 +46,4 @@ if ($LASTEXITCODE -eq 0) {
     Write-Host "`n❌ Lỗi khi commit!" -ForegroundColor Red
 }
 
+

@@ -70,3 +70,4 @@ python tao_hinh_pillow.py
 
 Private repository - Nội bộ sử dụng
 
+

@@ -123,3 +123,4 @@ Bạn muốn tôi tạo script tự động hóa không?
 
 **Tóm lại:** Git **KHÔNG tự động**, bạn phải **chủ động** sync! 🦐
 
+

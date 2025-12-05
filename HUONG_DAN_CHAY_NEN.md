@@ -188,3 +188,4 @@ Get-Process powershell | Where-Object {$_.CommandLine -like "*auto_sync*"} | Sto
 
 **Chúc bạn thành công!** 🦐
 
+
