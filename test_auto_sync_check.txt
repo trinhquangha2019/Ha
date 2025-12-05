@@ -1,0 +1,4 @@
+File test de kiem tra auto sync GitHub
+Thoi gian tao: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
+Neu auto sync hoat dong, file nay se duoc commit va push len GitHub trong vong 5 phut.
+
