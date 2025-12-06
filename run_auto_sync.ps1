@@ -11,3 +11,6 @@ $job = Start-Job -ScriptBlock {
 Write-Host "Auto sync đã được khởi động trong background job (ID: $($job.Id))"
 Write-Host "Kiểm tra log file: auto_sync_log.txt"
 
+
+
+

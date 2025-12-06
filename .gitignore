@@ -45,6 +45,7 @@ id_ed25519
 
 # HTML exports (tạm thời)
 *.html
+!De_xuat_content_website_2025.html
 
 # Notebook
 .ipynb_checkpoints/

@@ -41,3 +41,6 @@ if ($remaining) {
     Write-Host "✅ Không còn process nào đang chạy!" -ForegroundColor Green
 }
 
+
+
+

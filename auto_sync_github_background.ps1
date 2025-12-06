@@ -90,6 +90,11 @@ while ($true) {
                 # Add tat ca file (bao gom ca file bi xoa) - QUAN TRONG!
                 git add -A 2>&1 | Out-Null
                 
+                # Force add file HTML quan trong neu bi ignore
+                if (Test-Path "De_xuat_content_website_2025.html") {
+                    git add -f De_xuat_content_website_2025.html 2>&1 | Out-Null
+                }
+                
                 # Commit voi timestamp
                 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
                 $commitMessage = "Auto sync: $timestamp"

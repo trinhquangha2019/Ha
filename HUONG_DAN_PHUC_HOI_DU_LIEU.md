@@ -170,3 +170,6 @@ git reset --hard HEAD
 
 Tôi có thể tạo script để tự động phục hồi file từ Git commit gần nhất.
 
+
+
+

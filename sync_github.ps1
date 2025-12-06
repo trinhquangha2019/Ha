@@ -28,6 +28,11 @@ $commitMessage = "Auto sync: $timestamp"
 Write-Host "`n📦 Đang add files..." -ForegroundColor Cyan
 git add .
 
+# Force add file HTML quan trọng nếu bị ignore
+if (Test-Path "De_xuat_content_website_2025.html") {
+    git add -f De_xuat_content_website_2025.html 2>&1 | Out-Null
+}
+
 Write-Host "💾 Đang commit..." -ForegroundColor Cyan
 git commit -m $commitMessage
 

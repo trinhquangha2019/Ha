@@ -22,6 +22,11 @@ while ($true) {
             # Add tất cả file
             git add . | Out-Null
             
+            # Force add file HTML quan trọng nếu bị ignore
+            if (Test-Path "De_xuat_content_website_2025.html") {
+                git add -f De_xuat_content_website_2025.html 2>&1 | Out-Null
+            }
+            
             # Commit với timestamp
             $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
             $commitMessage = "Auto sync: $timestamp"

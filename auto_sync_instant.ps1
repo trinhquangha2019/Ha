@@ -43,6 +43,11 @@ function Sync-Now {
         if (-not [string]::IsNullOrWhiteSpace($status)) {
             git add -A 2>&1 | Out-Null
             
+            # Force add file HTML quan trong neu bi ignore
+            if (Test-Path "De_xuat_content_website_2025.html") {
+                git add -f De_xuat_content_website_2025.html 2>&1 | Out-Null
+            }
+            
             $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
             $commitMessage = "Auto sync: $timestamp"
             git commit -m $commitMessage 2>&1 | Out-Null
@@ -129,4 +134,7 @@ try {
     $watcher.Dispose()
     Write-Host "`n✅ Da dung theo doi" -ForegroundColor Green
 }
+
+
+
 
